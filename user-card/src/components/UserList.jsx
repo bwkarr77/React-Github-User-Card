@@ -6,7 +6,7 @@ const UserList = props => {
   return (
     <div>
       {props.followers.map(each => (
-        <UserCard user={each} />
+        <UserCard user={each} key={each.id} />
       ))}
     </div>
   );
