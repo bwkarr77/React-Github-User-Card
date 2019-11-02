@@ -1,6 +1,8 @@
 import React from "react";
+import "./cardStyle.css";
 
 const UserCard = props => {
+  console.log(props.user);
   const {
     name,
     login,
@@ -8,18 +10,21 @@ const UserCard = props => {
     url,
     followers,
     following,
-    avatar_url
+    avatar_url,
+    bio
   } = props.user;
-  console.log(avatar_url);
   return (
-    <div>
-      <h2>{name}</h2>
-      <p>{login}</p>
-      <p>{location}</p>
-      <p>{url}</p>
-      <p>{followers}</p>
-      <p>{following}</p>
-      <img src={avatar_url} />
+    <div className="card-container">
+      <img src={avatar_url} alt="User pic" />
+      <div className="user-content">
+        <h2>Name: {name}</h2>
+        <p>Username: {login}</p>
+        <p>Location: {location}</p>
+        <a href={url}>See my page...</a>
+        <p>Followers: {followers}</p>
+        <p>Following: {following}</p>
+        <p>Bio: {bio}</p>
+      </div>
     </div>
   );
 };
