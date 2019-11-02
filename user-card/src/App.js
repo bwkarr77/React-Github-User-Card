@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./App.css";
+import "./components/cardStyle.css";
 //import class components
 import UserList from "./components/UserList";
 import UserCard from "./components/UserCard";
@@ -39,7 +40,7 @@ class App extends React.Component {
         results.data.forEach(i => {
           axios.get(`https://api.github.com/users/${i.login}`).then(res => {
             // console.log(res.data);
-            this.setState({ followers: res.data });
+            this.setState({ followers: [...this.state.followers, res.data] });
           });
         });
       })
@@ -52,13 +53,15 @@ class App extends React.Component {
       <div className="App">
         <div className="App-header">
           <h2>GITHUB USER CARD</h2>
-          <UserCard user={this.state.userData} />
-          {Array.isArray(this.state.followers) &&
-          this.state.followers.length > 0 ? (
-            <UserList followers={this.state.followers} />
-          ) : (
-            console.log("empty")
-          )}
+          <section className="card-content">
+            <UserCard user={this.state.userData} />
+            {Array.isArray(this.state.followers) &&
+            this.state.followers.length > 0 ? (
+              <UserList followers={this.state.followers} />
+            ) : (
+              console.log("empty")
+            )}
+          </section>
         </div>
       </div>
     );
