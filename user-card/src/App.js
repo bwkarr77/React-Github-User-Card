@@ -31,7 +31,7 @@ class App extends React.Component {
 
   getFriendsList() {
     axios
-      .get(`https://api.github.com/users/${this.state.name}`)
+      .get(`https://api.github.com/users/${this.state.name}/followers`)
       .then(results => {
         console.log(results.data);
       })
