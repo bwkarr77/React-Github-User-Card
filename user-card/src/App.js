@@ -5,8 +5,12 @@ import "./components/cardStyle.css";
 //import class components
 import UserList from "./components/UserList";
 import UserCard from "./components/UserCard";
+import { useGetInfo } from "./components/ApiContent";
+
+const baseUrl = "https://api.github.com/users/";
 
 class App extends React.Component {
+  // baseUrl = "https://api.github.com/users/";
   constructor() {
     super();
     this.state = {
@@ -14,6 +18,7 @@ class App extends React.Component {
       userData: [],
       followers: []
     };
+    // const baseUrl = "https://api.github.com/users/";
   }
 
   //componentDidMount ==> gets invoked immediately
@@ -26,7 +31,7 @@ class App extends React.Component {
     axios
       .get(`https://api.github.com/users/${this.state.login}`)
       .then(results => {
-        // console.log(results.data);
+        console.log(results.data);
         this.setState({ userData: results.data });
       })
       .catch(err => console.log(err));

@@ -16,13 +16,31 @@ const UserCard = props => {
   } = props.user;
 
   function toggleGit() {
-    let x = document.getElementById(`${id}`);
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
+    let gitChart = document.getElementById(`${id}`);
+    let butMore = document.getElementById(`${id}_More`);
+    let butLess = document.getElementById(`${id}_Less`);
+    let controlArr = [gitChart, butMore, butLess];
+    console.log(
+      "1",
+      gitChart.style.display,
+      butMore.style.display,
+      butLess.style.display
+    );
+    for (let i = 0; i < controlArr.length; i++) {
+      if (controlArr[i].style.display === "none") {
+        controlArr[i].style.display = "block";
+      } else {
+        controlArr[i].style.display = "none";
+      }
     }
+    console.log(
+      "2",
+      gitChart.style.display,
+      butMore.style.display,
+      butLess.style.display
+    );
   }
+
   return (
     <div className="card-container">
       <section className="top">
@@ -42,9 +60,26 @@ const UserCard = props => {
           className="user-git"
           id={id}
           src={`http://ghchart.rshah.org/${login}`}
+          alt={`${id}'s image`}
+          style={{ display: "none" }}
         />
       </section>
-      <button onClick={toggleGit}>More</button>
+      <button
+        onClick={toggleGit}
+        className="button-open"
+        id={`${id}_More`}
+        style={{ display: "block" }}
+      >
+        More
+      </button>
+      <button
+        onClick={toggleGit}
+        className="button-close"
+        id={`${id}_Less`}
+        style={{ display: "none" }}
+      >
+        Less
+      </button>
     </div>
   );
 };
